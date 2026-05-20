@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next'
 import { siteConfig } from '@/config/site'
 import { blogPosts } from '@/features/blog/blog.data'
-import { services } from '@/features/services/services.data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
@@ -11,6 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/blogs`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
     { url: `${siteConfig.url}/patient-corner`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${siteConfig.url}/contact`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 },
+    { url: `${siteConfig.url}/doctor-in-cuttack`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${siteConfig.url}/doctor-in-bhubaneswar`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${siteConfig.url}/clinic-in-odisha`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
   ]
 
   const blogPages = blogPosts.map((post) => ({

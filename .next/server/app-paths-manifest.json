@@ -1,5 +1,10 @@
 {
   "/icon/[[...__metadata_id__]]/route": "app/icon/[[...__metadata_id__]]/route.js",
   "/page": "app/page.js",
-  "/(routes)/patient-corner/page": "app/(routes)/patient-corner/page.js"
+  "/(routes)/patient-corner/page": "app/(routes)/patient-corner/page.js",
+  "/(routes)/services/page": "app/(routes)/services/page.js",
+  "/(routes)/blogs/[slug]/page": "app/(routes)/blogs/[slug]/page.js",
+  "/(routes)/about/page": "app/(routes)/about/page.js",
+  "/(routes)/blogs/page": "app/(routes)/blogs/page.js",
+  "/(routes)/contact/page": "app/(routes)/contact/page.js"
 }

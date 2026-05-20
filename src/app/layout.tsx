@@ -3,6 +3,8 @@ import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollToTop } from '@/components/layout/ScrollToTop'
+import { FloatingCTA } from '@/components/layout/FloatingCTA'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'your-google-verification-code', // Could be updated if provided
   },
 }
 
@@ -49,44 +51,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#157f72" />
         <meta name="geo.region" content="IN-OR" />
         <meta name="geo.placename" content="Cuttack, Odisha, India" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Physician',
-              name: 'Dr. Nitya Nutan Misra',
-              description: siteConfig.description,
-              url: siteConfig.url,
-              telephone: siteConfig.phone,
-              email: siteConfig.email,
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'Acharya Harihar Post Graduate Institute of Cancer',
-                addressLocality: 'Cuttack',
-                addressRegion: 'Odisha',
-                addressCountry: 'IN',
-              },
-              medicalSpecialty: 'Surgical Oncology',
-              worksFor: {
-                '@type': 'Hospital',
-                name: 'Acharya Harihar Post Graduate Institute of Cancer',
-                address: {
-                  '@type': 'PostalAddress',
-                  addressLocality: 'Cuttack',
-                  addressRegion: 'Odisha',
-                  addressCountry: 'IN',
-                },
-              },
-            }),
-          }}
-        />
+        <StructuredData />
       </head>
-      <body className="antialiased">
+      <body className="antialiased pb-16 md:pb-0">
         <ScrollToTop />
         <Navbar />
         <main className="page-wrapper">{children}</main>
         <Footer />
+        <FloatingCTA />
       </body>
     </html>
   )

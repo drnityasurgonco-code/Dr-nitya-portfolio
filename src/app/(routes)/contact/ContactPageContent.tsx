@@ -157,8 +157,8 @@ ${form.message}`
                   icon: MapPin,
                   label: 'Clinic Address',
                   value: siteConfig.hospital,
-                  sub: 'Kathagola, Ring Rd, Cuttack, Odisha 753110',
-                  href: 'https://maps.google.com/?q=Sai+shree+polyclinic+Cuttack+At-+Kathagola,+Ring+Rd,+near+Shree+Maa,+Cuttack,+Odisha+753110',
+                  sub: 'Kathagola Rd, near shreema Hospital, Mangalabag, Cuttack, Odisha 753001, Sai Shree Poly Clinic',
+                  href: 'https://maps.google.com/?q=Kathagola+Rd,+near+shreema+Hospital,+Mangalabag,+Cuttack,+Odisha+753001,+Sai+Shree+Poly+Clinic',
                   cta: 'Get Directions',
                   highlight: false,
                 },
@@ -414,7 +414,7 @@ ${form.message}`
           <div className="rounded-3xl overflow-hidden shadow-card border border-neutral-100 aspect-video w-full max-h-[450px]">
             <iframe
               title="Clinic Location - Sai shree polyclinic, Cuttack, Odisha"
-              src="https://www.google.com/maps?q=Sai+shree+polyclinic+Cuttack+At-+Kathagola,+Ring+Rd,+near+Shree+Maa,+Cuttack,+Odisha+753110&output=embed"
+              src="https://www.google.com/maps?q=Kathagola+Rd,+near+shreema+Hospital,+Mangalabag,+Cuttack,+Odisha+753001,+Sai+Shree+Poly+Clinic&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -425,7 +425,7 @@ ${form.message}`
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
             <a
-              href="https://maps.google.com/?q=Sai+shree+polyclinic+Cuttack+At-+Kathagola,+Ring+Rd,+near+Shree+Maa,+Cuttack,+Odisha+753110"
+              href="https://maps.google.com/?q=Kathagola+Rd,+near+shreema+Hospital,+Mangalabag,+Cuttack,+Odisha+753001,+Sai+Shree+Poly+Clinic"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"

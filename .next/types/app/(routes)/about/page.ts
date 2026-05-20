@@ -1,4 +1,4 @@
-// File: E:\Production-Website\Dr Nitya nutan mishra\doctor-portfolio\src\app\(routes)\about\page.tsx
+// File: E:\Production-Website\Dr Nitya nutan mishra-main\doctor-portfolio\src\app\(routes)\about\page.tsx
 import * as entry from '../../../../../src/app/(routes)/about/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

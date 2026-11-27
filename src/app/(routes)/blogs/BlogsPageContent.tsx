@@ -60,7 +60,7 @@ export function BlogsPageContent() {
                 aria-pressed={activeCategory === cat}
                 className={`font-body text-sm px-4 py-2 rounded-full border transition-all duration-200 ${
                   activeCategory === cat
-                    ? 'bg-primary-600 text-white border-primary-600 shadow-sm'
+                    ? 'bg-primary-600 text-white border-primary-600 shadow-xs'
                     : 'bg-white text-neutral-600 border-neutral-200 hover:border-primary-300 hover:text-primary-600'
                 }`}
               >
@@ -81,7 +81,7 @@ export function BlogsPageContent() {
                 aria-labelledby={`blog-${post.id}-title`}
               >
                 {/* Category Header */}
-                <div className="bg-gradient-to-r from-primary-600 to-primary-700 px-5 py-3">
+                <div className="bg-linear-to-r from-primary-600 to-primary-700 px-5 py-3">
                   <span className="font-body text-white text-xs font-semibold uppercase tracking-widest">
                     {post.category}
                   </span>

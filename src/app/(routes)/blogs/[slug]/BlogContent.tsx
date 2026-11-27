@@ -138,7 +138,7 @@ export function BlogContent({ post, related, service }: Props) {
 
                 {/* Author block */}
                 <div className="mt-8 p-5 bg-neutral-50 rounded-2xl border border-neutral-100 flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center shrink-0">
                     <span className="font-display text-white font-bold text-sm">NM</span>
                   </div>
                   <div>
@@ -172,7 +172,7 @@ export function BlogContent({ post, related, service }: Props) {
             {/* Sidebar */}
             <aside className="lg:col-span-1 space-y-5" aria-label="Sidebar">
               {/* CTA Card */}
-              <div className="bg-gradient-to-br from-primary-700 to-primary-900 rounded-2xl p-6 text-white sticky top-24">
+              <div className="bg-linear-to-br from-primary-700 to-primary-900 rounded-2xl p-6 text-white sticky top-24">
                 <h3 className="font-display text-lg font-bold mb-2">Need a Consultation?</h3>
                 <p className="font-body text-white/70 text-sm mb-5 leading-relaxed">
                   If you have concerns about cancer symptoms or diagnosis, consult Dr. Misra for expert evaluation.

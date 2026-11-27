@@ -39,7 +39,7 @@ export function Hero() {
   return (
     <section
       aria-label="Hero — Dr. Nitya Nutan Misra Surgical Oncologist"
-      className="relative flex flex-col overflow-hidden lg:h-[100dvh]"
+      className="relative flex flex-col overflow-hidden lg:h-dvh"
       style={{
         background: 'linear-gradient(135deg, #052e2b 0%, #064e3b 100%)',
         minHeight: '100dvh',
@@ -231,7 +231,7 @@ export function Hero() {
                 {...fadeIn(0.35)}
                 className="w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-0 mb-6
                             border border-white/8 rounded-2xl overflow-hidden
-                            bg-white/[0.03] backdrop-blur-sm"
+                            bg-white/3 backdrop-blur-xs"
               >
                 {stats.map(({ icon: Icon, value, label }, i) => (
                   <motion.div
@@ -239,11 +239,11 @@ export function Hero() {
                     variants={fadeUp} initial="hidden" animate="show" custom={0.45 + i * 0.08}
                     className="flex flex-col items-center lg:items-start gap-1 px-4 py-4
                                 border-r border-white/8 last:border-r-0
-                                [&:nth-child(2)]:border-r-0 sm:[&:nth-child(2)]:border-r
-                                lg:[&:nth-child(2)]:border-r"
+                                nth-2:border-r-0 sm:nth-2:border-r
+                                lg:nth-2:border-r"
                   >
                     <div className="flex items-center gap-2">
-                      <div className="flex-shrink-0 w-7 h-7 rounded-md border border-white/10 bg-white/5 flex items-center justify-center">
+                      <div className="shrink-0 w-7 h-7 rounded-md border border-white/10 bg-white/5 flex items-center justify-center">
                         <Icon className="w-3.5 h-3.5 text-teal-400/80" />
                       </div>
                       <p

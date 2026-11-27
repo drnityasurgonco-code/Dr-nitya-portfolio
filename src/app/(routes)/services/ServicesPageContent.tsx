@@ -70,7 +70,7 @@ export function ServicesPageContent() {
                   <div className={isEven ? 'order-1' : 'order-1 lg:order-2'}>
                     {/* Service icon + title */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center shrink-0">
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
@@ -93,7 +93,7 @@ export function ServicesPageContent() {
                       <ul className="space-y-2" aria-label={`Benefits of ${service.title}`}>
                         {service.benefits.map((b) => (
                           <li key={b} className="flex items-start gap-2.5">
-                            <CheckCircle2 className="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" />
+                            <CheckCircle2 className="w-4 h-4 text-primary-500 mt-0.5 shrink-0" />
                             <span className="font-body text-neutral-600 text-sm">{b}</span>
                           </li>
                         ))}
@@ -118,7 +118,7 @@ export function ServicesPageContent() {
 
                   {/* Visual side */}
                   <div className={isEven ? 'order-2' : 'order-2 lg:order-1'}>
-                    <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-3xl p-8 border border-primary-100 h-full min-h-[260px] flex flex-col justify-center">
+                    <div className="bg-linear-to-br from-primary-50 to-primary-100 rounded-3xl p-8 border border-primary-100 h-full min-h-[260px] flex flex-col justify-center">
                       <div className="w-16 h-16 rounded-2xl bg-primary-600 flex items-center justify-center mb-5">
                         <Icon className="w-8 h-8 text-white" />
                       </div>
@@ -145,7 +145,7 @@ export function ServicesPageContent() {
       {/* Bottom CTA */}
       <section aria-labelledby="services-cta-heading" className="py-16 bg-neutral-50">
         <div className="container-custom">
-          <div className="bg-gradient-to-br from-primary-800 to-primary-950 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+          <div className="bg-linear-to-br from-primary-800 to-primary-950 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-hero-pattern opacity-30" aria-hidden />
             <div className="relative z-10">
               <h2 id="services-cta-heading" className="font-display text-2xl md:text-3xl font-bold mb-3">

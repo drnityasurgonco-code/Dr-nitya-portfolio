@@ -7,7 +7,7 @@ import { siteConfig } from '@/config/site'
 
 export function CTA() {
   return (
-    <section aria-labelledby="cta-heading" className="section-padding bg-gradient-to-br from-primary-800 via-primary-900 to-primary-950 relative overflow-hidden">
+    <section aria-labelledby="cta-heading" className="section-padding bg-linear-to-br from-primary-800 via-primary-900 to-primary-950 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-secondary/10" />
@@ -63,7 +63,7 @@ export function CTA() {
           </a>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 hover:border-white/40 text-white font-body font-medium px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-base w-full sm:w-auto justify-center backdrop-blur-sm"
+            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 hover:border-white/40 text-white font-body font-medium px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-base w-full sm:w-auto justify-center backdrop-blur-xs"
           >
             <Mail className="w-5 h-5" />
             Send a Message

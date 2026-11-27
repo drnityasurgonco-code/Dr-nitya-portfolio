@@ -26,7 +26,7 @@ export function AboutPreview() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="relative w-full aspect-[4/5] max-w-[400px] mx-auto lg:mr-auto lg:ml-auto"
+            className="relative w-full aspect-4/5 max-w-[400px] mx-auto lg:mr-auto lg:ml-auto"
           >
             {/* Main card */}
             <div 
@@ -44,16 +44,16 @@ export function AboutPreview() {
               />
               
               {/* Dark Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/40 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 via-transparent to-transparent mix-blend-multiply" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-900/95 via-slate-900/40 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-primary-900/40 via-transparent to-transparent mix-blend-multiply" />
 
               {/* Floating stat cards */}
               <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 shadow-lg transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-1 z-20">
-                <p className="font-display text-white text-xl font-bold leading-none drop-shadow-sm">MCh</p>
+                <p className="font-display text-white text-xl font-bold leading-none drop-shadow-xs">MCh</p>
                 <p className="font-body text-white/90 text-xs mt-1 font-medium">Surgical Oncology</p>
               </div>
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 shadow-lg transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-1 z-20">
-                <p className="font-display text-white text-xl font-bold leading-none drop-shadow-sm">10+</p>
+                <p className="font-display text-white text-xl font-bold leading-none drop-shadow-xs">10+</p>
                 <p className="font-body text-white/90 text-xs mt-1 font-medium">Years Experience</p>
               </div>
 
@@ -61,7 +61,7 @@ export function AboutPreview() {
               <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 md:p-8 flex flex-col justify-end z-20">
                 {/* Glassmorphism Container */}
                 <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 sm:p-6 transform transition-transform duration-500 group-hover:-translate-y-1">
-                  <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mb-1 drop-shadow-sm">Dr. Nitya Nutan Misra</h3>
+                  <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mb-1 drop-shadow-xs">Dr. Nitya Nutan Misra</h3>
                   <p className="font-body text-primary-200 text-sm md:text-base font-medium mb-1">{doctorProfile.specialization}</p>
                   <p className="font-body text-white/70 text-xs md:text-sm mb-4 sm:mb-5">
                     {doctorProfile.designation} · {doctorProfile.hospital}
@@ -110,7 +110,7 @@ export function AboutPreview() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {doctorProfile.qualifications.map((q) => (
                   <div key={q} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary-500 flex-shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-primary-500 shrink-0" />
                     <span className="font-body text-neutral-700 text-sm">{q}</span>
                   </div>
                 ))}

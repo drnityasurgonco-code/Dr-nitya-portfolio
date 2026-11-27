@@ -44,7 +44,7 @@ export function Navbar() {
       {/* ── Navbar bar ──────────────────────────────────────────── */}
       <header
         style={{ height: 'var(--navbar-height)' }}
-        className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-1000 transition-all duration-300 ${
           solidNav
             ? 'bg-white/95 backdrop-blur-md shadow-soft border-b border-neutral-100'
             : 'bg-transparent'
@@ -54,7 +54,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group" aria-label="Dr. Nitya Nutan Misra Home">
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${
-              solidNav ? 'bg-primary-600' : 'bg-white/20 backdrop-blur-sm'
+              solidNav ? 'bg-primary-600' : 'bg-white/20 backdrop-blur-xs'
             }`}>
               <Stethoscope className={`w-5 h-5 ${solidNav ? 'text-white' : 'text-white'}`} />
             </div>

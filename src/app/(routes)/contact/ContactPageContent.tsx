@@ -90,7 +90,7 @@ ${form.message}`
   }
 
   const inputClass = (field: keyof FormData) =>
-    `w-full font-body text-sm text-neutral-800 bg-white border rounded-xl px-4 py-3 outline-none transition-all duration-200 placeholder:text-neutral-400 ${
+    `w-full font-body text-sm text-neutral-800 bg-white border rounded-xl px-4 py-3 outline-hidden transition-all duration-200 placeholder:text-neutral-400 ${
       errors[field]
         ? 'border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100'
         : 'border-neutral-200 focus:border-primary-400 focus:ring-2 focus:ring-primary-50'
@@ -173,12 +173,12 @@ ${form.message}`
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className={`rounded-2xl p-4 sm:p-5 border overflow-hidden ${
                     highlight
-                      ? 'bg-gradient-to-br from-primary-700 to-primary-900 border-primary-600 text-white'
+                      ? 'bg-linear-to-br from-primary-700 to-primary-900 border-primary-600 text-white'
                       : 'bg-white border-neutral-100 shadow-soft'
                   }`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
                       highlight ? 'bg-white/15' : 'bg-primary-50'
                     }`}>
                       <Icon className={`w-5 h-5 ${highlight ? 'text-white' : 'text-primary-600'}`} />

@@ -112,7 +112,7 @@ export default async function ServicePage({ params }: Props) {
             <ul className="space-y-2 mb-10">
               {meta.signs.map((sign) => (
                 <li key={sign} className="flex items-start gap-3 font-body text-neutral-700">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-600 flex-shrink-0" />
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0" />
                   {sign}
                 </li>
               ))}
@@ -127,7 +127,7 @@ export default async function ServicePage({ params }: Props) {
             <ul className="space-y-3">
               {service.benefits.map((b) => (
                 <li key={b} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-primary-600 mt-0.5 shrink-0" />
                   <span className="font-body text-neutral-700">{b}</span>
                 </li>
               ))}

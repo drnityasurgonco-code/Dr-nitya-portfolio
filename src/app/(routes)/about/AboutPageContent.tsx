@@ -117,7 +117,7 @@ export function AboutPageContent() {
                 <div className="grid sm:grid-cols-2 gap-2">
                   {doctorProfile.qualifications.map((q) => (
                     <div key={q} className="flex items-center gap-2.5 bg-primary-50 rounded-xl px-4 py-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-primary-500 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-primary-500 shrink-0" />
                       <span className="font-body text-neutral-700 text-sm">{q}</span>
                     </div>
                   ))}
@@ -134,7 +134,7 @@ export function AboutPageContent() {
                 <ul className="space-y-2">
                   {doctorProfile.certifications.map((c) => (
                     <li key={c} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 shrink-0" />
                       <span className="font-body text-neutral-600 text-sm">{c}</span>
                     </li>
                   ))}
@@ -166,7 +166,7 @@ export function AboutPageContent() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.45, delay: i * 0.07 }}
               >
-                <div className="w-9 h-9 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-primary-50 flex items-center justify-center shrink-0">
                   <Award className="w-4 h-4 text-primary-600" />
                 </div>
                 <p className="font-body text-neutral-700 text-sm leading-relaxed">{ach}</p>
@@ -224,7 +224,7 @@ export function AboutPageContent() {
       </section>
 
       {/* Mini Testimonials */}
-      <section aria-labelledby="testimonials-about-heading" className="section-padding bg-gradient-to-br from-primary-800 to-primary-950">
+      <section aria-labelledby="testimonials-about-heading" className="section-padding bg-linear-to-br from-primary-800 to-primary-950">
         <div className="container-custom">
           <h2 id="testimonials-about-heading" className="font-display text-2xl font-bold text-white text-center mb-8">
             What Patients Say

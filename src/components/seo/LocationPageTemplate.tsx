@@ -134,7 +134,7 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl, p
                 </h3>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center flex-shrink-0 text-primary-600 shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 text-primary-600 shadow-xs">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
@@ -143,7 +143,7 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl, p
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center flex-shrink-0 text-primary-600 shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 text-primary-600 shadow-xs">
                       <Phone className="w-5 h-5" />
                     </div>
                     <div>

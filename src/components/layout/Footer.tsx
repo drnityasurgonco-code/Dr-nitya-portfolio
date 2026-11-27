@@ -124,7 +124,7 @@ export function Footer() {
                   className="flex items-start gap-3 group"
                   aria-label="Call Dr. Nitya Nutan Misra"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-primary-600/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary-600/40 transition-colors duration-200">
+                  <div className="w-8 h-8 rounded-lg bg-primary-600/20 flex items-center justify-center shrink-0 group-hover:bg-primary-600/40 transition-colors duration-200">
                     <Phone className="w-4 h-4 text-primary-400" />
                   </div>
                   <div>
@@ -141,7 +141,7 @@ export function Footer() {
                   className="flex items-start gap-3 group"
                   aria-label="Email Dr. Nitya Nutan Misra"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-primary-600/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary-600/40 transition-colors duration-200">
+                  <div className="w-8 h-8 rounded-lg bg-primary-600/20 flex items-center justify-center shrink-0 group-hover:bg-primary-600/40 transition-colors duration-200">
                     <Mail className="w-4 h-4 text-primary-400" />
                   </div>
                   <div>
@@ -154,7 +154,7 @@ export function Footer() {
               </li>
               <li>
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-primary-600/20 flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-primary-600/20 flex items-center justify-center shrink-0">
                     <MapPin className="w-4 h-4 text-primary-400" />
                   </div>
                   <div>

@@ -61,7 +61,7 @@ export function PatientCornerContent() {
       <div className="bg-secondary/10 border-b border-secondary/20">
         <div className="container-custom py-4">
           <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+            <AlertCircle className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
             <p className="font-body text-sm text-neutral-700">
               <span className="font-semibold">Medical Disclaimer:</span> Information on this page is for educational purposes only and does not replace professional medical advice. Please consult Dr. Misra for any personal medical concerns.
             </p>
@@ -188,8 +188,8 @@ export function PatientCornerContent() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <div className="flex flex-col items-center flex-shrink-0">
-                  <div className={`w-10 h-10 rounded-full ${item.color} flex items-center justify-center text-white font-body font-bold text-sm flex-shrink-0`}>
+                <div className="flex flex-col items-center shrink-0">
+                  <div className={`w-10 h-10 rounded-full ${item.color} flex items-center justify-center text-white font-body font-bold text-sm shrink-0`}>
                     {item.step}
                   </div>
                   {i < 4 && <div className="w-0.5 h-full bg-neutral-200 mt-2" aria-hidden />}
@@ -254,13 +254,13 @@ export function PatientCornerContent() {
                   aria-controls={`faq-answer-${faq.id}`}
                 >
                   <div className="flex items-start gap-3 flex-1 pr-4">
-                    <HelpCircle className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                    <HelpCircle className="w-5 h-5 text-primary-500 shrink-0 mt-0.5" />
                     <span className="font-body font-semibold text-neutral-800 text-sm leading-snug">
                       {faq.question}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform duration-300 ${
+                    className={`w-5 h-5 text-neutral-400 shrink-0 transition-transform duration-300 ${
                       openFaq === faq.id ? 'rotate-180' : ''
                     }`}
                   />
@@ -277,7 +277,7 @@ export function PatientCornerContent() {
                     >
                       <div className="px-6 pb-5 pt-0 border-t border-neutral-100">
                         <div className="flex items-start gap-3 pt-4">
-                          <CheckCircle2 className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-5 h-5 text-primary-500 shrink-0 mt-0.5" />
                           <p className="font-body text-neutral-600 text-sm leading-relaxed">{faq.answer}</p>
                         </div>
                       </div>

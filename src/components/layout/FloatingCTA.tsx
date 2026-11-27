@@ -14,7 +14,7 @@ export function FloatingCTA() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-20 md:bottom-6 right-6 z-[99] bg-[#25D366] text-white p-3.5 rounded-full shadow-xl hover:scale-110 transition-transform duration-300 flex items-center justify-center group"
+        className="fixed bottom-20 md:bottom-6 right-6 z-99 bg-[#25D366] text-white p-3.5 rounded-full shadow-xl hover:scale-110 transition-transform duration-300 flex items-center justify-center group"
         aria-label="Chat on WhatsApp"
       >
         <svg
@@ -37,7 +37,7 @@ export function FloatingCTA() {
       </a>
 
       {/* Mobile CTA Bar */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-neutral-200 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] flex items-center justify-around p-2">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-100 bg-white border-t border-neutral-200 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] flex items-center justify-around p-2">
         <a
           href={callUrl}
           className="flex flex-col items-center justify-center w-full py-1.5 text-neutral-600 hover:text-primary-600"
@@ -45,7 +45,7 @@ export function FloatingCTA() {
           <Phone className="w-5 h-5 mb-1" />
           <span className="text-[10px] font-medium uppercase tracking-wider">Call</span>
         </a>
-        <div className="w-[1px] h-8 bg-neutral-200 mx-2" />
+        <div className="w-px h-8 bg-neutral-200 mx-2" />
         <a
           href={whatsappUrl}
           target="_blank"
@@ -68,7 +68,7 @@ export function FloatingCTA() {
           </svg>
           <span className="text-[10px] font-medium uppercase tracking-wider">WhatsApp</span>
         </a>
-        <div className="w-[1px] h-8 bg-neutral-200 mx-2" />
+        <div className="w-px h-8 bg-neutral-200 mx-2" />
         <a
           href="/contact"
           className="flex flex-col items-center justify-center w-full py-1.5 text-primary-600"

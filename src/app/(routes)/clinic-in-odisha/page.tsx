@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { LocationPageTemplate } from '@/components/seo/LocationPageTemplate'
 import { siteConfig } from '@/config/site'
 import { pageMetadata } from '@/lib/seo'
+import { locationSections } from '@/features/locations/locations.content'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Cancer Surgery Clinic in Odisha | Dr. Nitya Nutan Misra',
@@ -38,6 +39,7 @@ export default function ClinicInOdishaPage() {
       faqs={faqs}
       mapUrl={siteConfig.mapsEmbedUrl}
       path="/clinic-in-odisha"
+      sections={locationSections['/clinic-in-odisha']}
     />
   )
 }

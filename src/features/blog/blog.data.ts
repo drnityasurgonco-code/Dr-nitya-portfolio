@@ -1,6 +1,7 @@
 import type { BlogPost } from '@/types'
+import { localPosts } from './posts.local'
 
-export const blogPosts: BlogPost[] = [
+const basePosts: BlogPost[] = [
   {
     id: '1',
     slug: 'early-signs-breast-cancer-women-should-know',
@@ -38,7 +39,7 @@ Advanced breast cancer can cause ulceration of the overlying skin. A persistent 
 ## When to See a Doctor
 Do not wait for multiple symptoms. If you notice even one of these changes, consult a surgical oncologist immediately. Early assessment is always the correct course of action.
 
-At AHPGIC, Dr. Nitya Nutan Misra andhisteam offer prompt evaluation, imaging, and biopsy services to ensure timely diagnosis and treatment planning.`,
+At AHPGIC, Dr. Nitya Nutan Misra and his team offer prompt evaluation, imaging, and biopsy services to ensure timely diagnosis and treatment planning.`,
   },
   {
     id: '2',
@@ -162,7 +163,7 @@ Early-stage head and neck cancers are frequently curable with surgery alone or s
 
 ## During Surgery
 
-You will be under general anaesthesia and fully unconscious. The procedure typically lasts between 2–8 hours depending on complexity. Dr. Misra andhisteam work meticulously to achieve complete tumour removal.
+You will be under general anaesthesia and fully unconscious. The procedure typically lasts between 2–8 hours depending on complexity. Dr. Misra and his team work meticulously to achieve complete tumour removal.
 
 ## After Surgery
 
@@ -181,6 +182,9 @@ You will be under general anaesthesia and fully unconscious. The procedure typic
 You are not alone in this journey. Our entire team at AHPGIC is dedicated to supporting you through every step of your cancer treatment.`,
   },
 ]
+
+// Newest first, so the blog index shows the latest articles at the top.
+export const blogPosts: BlogPost[] = [...localPosts, ...basePosts].sort((a, b) => b.date.localeCompare(a.date))
 
 export const blogCategories = [
   'All',

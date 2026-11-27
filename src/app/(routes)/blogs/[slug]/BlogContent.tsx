@@ -13,6 +13,25 @@ interface Props {
   service?: { title: string; slug: string }
 }
 
+/** Inline markdown: **bold** and [text](/internal-path) links. */
+function renderInline(text: string) {
+  return text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/).map((p, pi) => {
+    if (p.startsWith('**') && p.endsWith('**')) {
+      return <strong key={pi} className="font-semibold text-neutral-800">{p.slice(2, -2)}</strong>
+    }
+    const link = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+    if (link) {
+      const [, label, href] = link
+      return href.startsWith('/') ? (
+        <Link key={pi} href={href} className="text-primary-700 font-medium underline underline-offset-2 hover:text-primary-800">{label}</Link>
+      ) : (
+        <a key={pi} href={href} target="_blank" rel="noopener noreferrer" className="text-primary-700 font-medium underline underline-offset-2 hover:text-primary-800">{label}</a>
+      )
+    }
+    return p
+  })
+}
+
 function renderMarkdown(content: string) {
   const lines = content.split('\n')
   const elements: React.ReactNode[] = []
@@ -34,20 +53,12 @@ function renderMarkdown(content: string) {
       }
       elements.push(
         <ul key={`ul-${i}`} className="list-disc list-inside space-y-1 text-neutral-600 font-body mb-4">
-          {items.map((item, j) => <li key={j}>{item}</li>)}
+          {items.map((item, j) => <li key={j}>{renderInline(item)}</li>)}
         </ul>
       )
       continue
     } else if (line.trim()) {
-      // Handle inline bold
-      const parts = line.split(/(\*\*[^*]+\*\*)/)
-      const rendered = parts.map((p, pi) => {
-        if (p.startsWith('**') && p.endsWith('**')) {
-          return <strong key={pi} className="font-semibold text-neutral-800">{p.slice(2, -2)}</strong>
-        }
-        return p
-      })
-      elements.push(<p key={i} className="font-body text-neutral-600 leading-relaxed mb-4">{rendered}</p>)
+      elements.push(<p key={i} className="font-body text-neutral-600 leading-relaxed mb-4">{renderInline(line)}</p>)
     }
     i++
   }

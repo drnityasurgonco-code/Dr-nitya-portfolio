@@ -15,7 +15,7 @@ const categoryToService: Record<string, string> = {
   'Breast Cancer': 'breast-cancer-surgery',
   'Thyroid Cancer': 'thyroid-endocrine-tumors',
   'Head & Neck Cancer': 'head-neck-cancer-surgery',
-  'GI Cancer': 'gastrointestinal-cancer-surgery',
+  'Gastrointestinal Cancer': 'gastrointestinal-cancer-surgery',
   'Patient Guide': 'multidisciplinary-cancer-treatment',
 }
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { LocationPageTemplate } from '@/components/seo/LocationPageTemplate'
 import { siteConfig } from '@/config/site'
 import { pageMetadata } from '@/lib/seo'
+import { locationSections } from '@/features/locations/locations.content'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Best Doctor in Bhubaneswar for Cancer | Dr. Nitya Nutan Misra',
@@ -38,6 +39,7 @@ export default function DoctorInBhubaneswarPage() {
       faqs={faqs}
       mapUrl={siteConfig.mapsEmbedUrl}
       path="/doctor-in-bhubaneswar"
+      sections={locationSections['/doctor-in-bhubaneswar']}
     />
   )
 }

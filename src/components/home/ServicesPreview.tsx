@@ -79,7 +79,7 @@ export function ServicesPreview() {
                 </p>
 
                 <Link
-                  href={`/services#${service.slug}`}
+                  href={`/services/${service.slug}`}
                   className="inline-flex items-center gap-1.5 text-primary-600 font-body font-semibold text-sm hover:gap-2.5 transition-all duration-200 group/link"
                   aria-label={`Learn more about ${service.title}`}
                 >

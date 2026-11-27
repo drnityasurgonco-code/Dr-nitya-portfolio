@@ -108,6 +108,12 @@ export function ServicesPageContent() {
                       <Phone className="w-4 h-4" />
                       Enquire About This Service
                     </a>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="inline-flex items-center gap-1.5 ml-4 text-primary-600 hover:text-primary-700 font-body font-semibold text-sm"
+                    >
+                      Full details →
+                    </Link>
                   </div>
 
                   {/* Visual side */}

@@ -13,9 +13,11 @@ interface LocationPageProps {
   faqs: { question: string; answer: string }[]
   mapUrl: string
   path: string
+  /** Page-specific content so each location page is unique (not a doorway page). */
+  sections?: { heading: string; paragraphs: string[]; links?: { label: string; href: string }[] }[]
 }
 
-export function LocationPageTemplate({ city, title, description, faqs, mapUrl, path }: LocationPageProps) {
+export function LocationPageTemplate({ city, title, description, faqs, mapUrl, path, sections = [] }: LocationPageProps) {
   // Schema for FAQ
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -85,6 +87,26 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl, p
                   ))}
                 </ul>
               </div>
+
+              {sections.map((section) => (
+                <div key={section.heading} className="mb-12">
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-neutral-900 mb-4">{section.heading}</h2>
+                  {section.paragraphs.map((para, i) => (
+                    <p key={i} className="font-body text-neutral-600 leading-relaxed mb-4">{para}</p>
+                  ))}
+                  {section.links && section.links.length > 0 && (
+                    <ul className="space-y-2 mt-2">
+                      {section.links.map((l) => (
+                        <li key={l.href}>
+                          <Link href={l.href} className="inline-flex items-center gap-2 text-primary-700 font-body font-medium hover:underline">
+                            <ArrowRight className="w-4 h-4" /> {l.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
 
               {/* FAQs */}
               <h2 className="font-display text-3xl font-bold text-neutral-900 mb-8">

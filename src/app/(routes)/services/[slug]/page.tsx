@@ -7,53 +7,10 @@ import { blogPosts } from '@/features/blog/blog.data'
 import { siteConfig } from '@/config/site'
 import { absoluteUrl, breadcrumbSchema, ids, pageMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/StructuredData'
+import { serviceSeo as seo } from '@/features/services/services.seo'
 
 interface Props {
   params: { slug: string }
-}
-
-// Per-service SEO copy: H1/title keyword + a 140–160 char description.
-const seo: Record<string, { h1: string; title: string; description: string; blogCategory?: string }> = {
-  'breast-cancer-surgery': {
-    h1: 'Breast Cancer Surgery in Cuttack',
-    title: 'Breast Cancer Surgery in Cuttack | Dr. Nitya Nutan Misra',
-    description:
-      'Breast-conserving surgery, mastectomy, sentinel node biopsy and oncoplastic surgery in Cuttack, Odisha, by Surgical Oncologist Dr. Nitya Nutan Misra. Book now.',
-    blogCategory: 'Breast Cancer',
-  },
-  'head-neck-cancer-surgery': {
-    h1: 'Head & Neck Cancer Surgery in Cuttack',
-    title: 'Head & Neck Cancer Surgery in Cuttack | Dr. N. N. Misra',
-    description:
-      'Surgery for oral, throat, larynx and salivary gland cancers in Cuttack, Odisha, focused on preserving speech and swallowing. Consult Dr. Nitya Nutan Misra.',
-    blogCategory: 'Head & Neck Cancer',
-  },
-  'gastrointestinal-cancer-surgery': {
-    h1: 'GI Cancer Surgery in Cuttack',
-    title: 'GI Cancer Surgery in Cuttack | Dr. Nitya Nutan Misra',
-    description:
-      'Surgery for stomach, colorectal, liver, pancreatic and oesophageal cancer in Cuttack, Odisha, including laparoscopic options. Consult Dr. Nitya Nutan Misra.',
-  },
-  'thyroid-endocrine-tumors': {
-    h1: 'Thyroid Cancer & Endocrine Tumour Surgery in Cuttack',
-    title: 'Thyroid Cancer Surgery in Cuttack | Dr. Nitya Nutan Misra',
-    description:
-      'Thyroidectomy, parathyroid and adrenal tumour surgery in Cuttack, Odisha, with nerve and parathyroid preservation. Book with Dr. Nitya Nutan Misra.',
-    blogCategory: 'Thyroid Cancer',
-  },
-  'sarcoma-surgery': {
-    h1: 'Sarcoma Surgery in Cuttack',
-    title: 'Sarcoma Surgery in Cuttack | Dr. Nitya Nutan Misra',
-    description:
-      'Limb-salvage and wide-excision surgery for soft tissue and bone sarcoma in Cuttack, Odisha, planned with the tumour board. Consult Dr. Nitya Nutan Misra.',
-  },
-  'multidisciplinary-cancer-treatment': {
-    h1: 'Multidisciplinary Cancer Treatment in Cuttack',
-    title: 'Multidisciplinary Cancer Care in Cuttack | Dr. N. N. Misra',
-    description:
-      'Tumour board-planned cancer care in Cuttack combining surgery, chemotherapy, radiation and supportive care. Book a consultation with Dr. Nitya Nutan Misra.',
-    blogCategory: 'Patient Guide',
-  },
 }
 
 export function generateStaticParams() {
@@ -98,6 +55,17 @@ export default function ServicePage({ params }: Props) {
         }}
       />
       <JsonLd data={breadcrumbSchema([{ name: 'Services', path: '/services' }, { name: service.title, path }])} />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: meta.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: { '@type': 'Answer', text: f.answer },
+          })),
+        }}
+      />
 
       {/* Hero */}
       <section className="inner-page-hero pt-[calc(var(--navbar-height)+3rem)] pb-16">
@@ -136,6 +104,18 @@ export default function ServicePage({ params }: Props) {
       <section className="py-14 bg-white">
         <div className="container-custom grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
+            <p className="font-body text-neutral-700 text-lg leading-relaxed mb-8">{meta.intro}</p>
+
+            <h2 className="font-display text-2xl font-bold text-neutral-900 mb-4">{meta.signsHeading}</h2>
+            <ul className="space-y-2 mb-10">
+              {meta.signs.map((sign) => (
+                <li key={sign} className="flex items-start gap-3 font-body text-neutral-700">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-600 flex-shrink-0" />
+                  {sign}
+                </li>
+              ))}
+            </ul>
+
             <h2 className="font-display text-2xl font-bold text-neutral-900 mb-4">About {service.title}</h2>
             {service.fullDesc.split('\n\n').map((para, i) => (
               <p key={i} className="font-body text-neutral-600 leading-relaxed mb-4">{para}</p>
@@ -158,6 +138,21 @@ export default function ServicePage({ params }: Props) {
               <li>Dr. Misra examines you, explains the diagnosis and the surgical options.</li>
               <li>Complex cases are discussed at a multidisciplinary tumour board before treatment is finalised.</li>
             </ol>
+
+            <h2 className="font-display text-2xl font-bold text-neutral-900 mt-10 mb-4">
+              Patients from Cuttack, Bhubaneswar and Across Odisha
+            </h2>
+            <p className="font-body text-neutral-600 leading-relaxed">{meta.localNote}</p>
+
+            <h2 className="font-display text-2xl font-bold text-neutral-900 mt-10 mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {meta.faqs.map((f) => (
+                <div key={f.question} className="bg-neutral-50 rounded-2xl p-5 border border-neutral-100">
+                  <h3 className="font-display text-lg font-semibold text-neutral-900 mb-2">{f.question}</h3>
+                  <p className="font-body text-neutral-600 leading-relaxed">{f.answer}</p>
+                </div>
+              ))}
+            </div>
 
             {articles.length > 0 && (
               <>

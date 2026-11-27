@@ -4,6 +4,7 @@ import { AboutPreview } from '@/components/home/AboutPreview'
 import { ServicesPreview } from '@/components/home/ServicesPreview'
 import { Testimonials } from '@/components/home/Testimonials'
 import { CTA } from '@/components/home/CTA'
+import { LocalSeoSection } from '@/components/home/LocalSeoSection'
 import { siteConfig } from '@/config/site'
 import { pageMetadata } from '@/lib/seo'
 
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Hero />
       <AboutPreview />
       <ServicesPreview />
+      <LocalSeoSection />
       <Testimonials />
       <CTA />
     </>

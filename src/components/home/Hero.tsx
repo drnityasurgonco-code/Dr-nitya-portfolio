@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, ArrowRight, CheckCircle2, Microscope, Stethoscope, Star, Trophy } from 'lucide-react'
+import { Phone, ArrowRight, CheckCircle2, Microscope, Stethoscope, GraduationCap, Trophy } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { siteConfig } from '@/config/site'
 
@@ -22,16 +22,16 @@ const fadeIn = (d = 0) => ({
 })
 
 const stats = [
-  { icon: Trophy,      value: '10+',   label: 'Years Experience' },
-  { icon: Stethoscope, value: '1000+', label: 'Surgeries Performed' },
-  { icon: Microscope,  value: '6',     label: 'Specialities' },
-  { icon: Star,        value: '95%+',  label: 'Success Rate' },
+  { icon: Trophy,        value: '10+',    label: 'Years Experience' },
+  { icon: GraduationCap, value: 'MCh',    label: 'Surgical Oncology' },
+  { icon: Microscope,    value: '6',      label: 'Cancer Specialities' },
+  { icon: Stethoscope,   value: 'AHPGIC', label: 'Assistant Professor' },
 ]
 
 const badges = [
-  'AHPGIC Certified',
+  'Assistant Professor, AHPGIC',
   'MCh Surgical Oncology',
-  '1000+ Surgeries',
+  'Tumour Board Reviewed Care',
   '10+ Years Experience',
 ]
 

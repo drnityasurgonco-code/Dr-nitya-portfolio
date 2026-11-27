@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 import { testimonials } from '@/features/doctor/doctor.data'
 
 export function Testimonials() {
@@ -55,11 +55,6 @@ export function Testimonials() {
               <p className="font-body text-neutral-600 text-sm leading-relaxed mb-4 line-clamp-5">
                 "{item.message}"
               </p>
-              <div className="flex mb-2" aria-label={`Rating: ${item.rating} out of 5`}>
-                {Array.from({ length: item.rating }).map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-secondary text-secondary" />
-                ))}
-              </div>
               <p className="font-body font-semibold text-neutral-800 text-sm">{item.name}</p>
               <p className="font-body text-neutral-500 text-xs">{item.location}</p>
               <span className="inline-block mt-2 text-xs font-body text-primary-600 bg-primary-50 px-2.5 py-1 rounded-full">
@@ -85,11 +80,6 @@ export function Testimonials() {
               <p className="font-body text-neutral-600 text-base leading-relaxed mb-4">
                 "{t.message}"
               </p>
-              <div className="flex mb-2" aria-label={`Rating: ${t.rating} out of 5`}>
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-secondary text-secondary" />
-                ))}
-              </div>
               <p className="font-body font-semibold text-neutral-800">{t.name}</p>
               <p className="font-body text-neutral-500 text-sm">{t.location}</p>
               <span className="inline-block mt-2 text-sm font-body text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
@@ -136,7 +126,7 @@ export function Testimonials() {
           viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="font-body text-neutral-500 text-sm">
-            Join hundreds of patients who chose expert oncology care at AHPGIC, Cuttack.
+            Individual experiences. Results vary from patient to patient.
           </p>
         </motion.div>
       </div>

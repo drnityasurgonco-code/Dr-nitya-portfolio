@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { siteConfig } from '@/config/site'
 import { JsonLd } from '@/components/seo/StructuredData'
+import { SectionIndex } from '@/components/shared/section-index'
 
 // Server-rendered so the text is in the initial HTML for search engines.
 const faqs = [
@@ -42,7 +43,7 @@ const links = [
 
 export function LocalSeoSection() {
   return (
-    <section aria-labelledby="local-heading" className="section-padding bg-neutral-50">
+    <section aria-labelledby="local-heading" className="frame section bg-white">
       <JsonLd
         data={{
           '@context': 'https://schema.org',
@@ -50,40 +51,54 @@ export function LocalSeoSection() {
           mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
         }}
       />
-      <div className="container-custom grid lg:grid-cols-2 gap-12">
-        <div>
-          <h2 id="local-heading" className="font-display text-3xl md:text-4xl font-bold text-neutral-900 mb-5">
-            Cancer Surgeon in Cuttack, for Patients from Bhubaneswar and All of Odisha
-          </h2>
-          <p className="font-body text-neutral-600 leading-relaxed mb-4">
-            Dr. Nitya Nutan Misra is an MCh Surgical Oncologist and Assistant Professor at Acharya Harihar Post Graduate
-            Institute of Cancer (AHPGIC), Cuttack. He consults at {siteConfig.hospital} in Mangalabag, Cuttack, and sees
-            patients from Cuttack, Bhubaneswar and districts across Odisha.
-          </p>
-          <p className="font-body text-neutral-600 leading-relaxed mb-6">
-            Whether you are looking for a breast cancer doctor, a thyroid surgeon, an oral cancer specialist or a second
-            opinion on a cancer treatment plan, a consultation with all your reports helps you understand the diagnosis
-            and your options.
-          </p>
-          <ul className="space-y-2">
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="inline-flex items-center gap-2 text-primary-700 font-body font-medium hover:underline">
-                  <ArrowRight className="w-4 h-4" /> {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 className="font-display text-2xl font-bold text-neutral-900 mb-5">Common Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((f) => (
-              <div key={f.question} className="bg-white rounded-2xl p-5 border border-neutral-100">
-                <h3 className="font-display text-base font-semibold text-neutral-900 mb-2">{f.question}</h3>
-                <p className="font-body text-sm text-neutral-600 leading-relaxed">{f.answer}</p>
-              </div>
-            ))}
+      <div className="container-x">
+        <SectionIndex index={4} label="Cuttack · Bhubaneswar · Odisha" meta={<span>Mangalabag, Cuttack 753001</span>} />
+        <div className="mt-14 grid grid-cols-1 gap-14 md:mt-20 lg:grid-cols-[minmax(0,1fr)_1.1fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <h2 id="local-heading" className="display-md">
+              Cancer Surgeon in Cuttack, <span className="text-brand-600">for Patients from Bhubaneswar and All of Odisha</span>
+            </h2>
+            <div className="prose-clinic mt-8">
+              <p>
+                Dr. Nitya Nutan Misra is an MCh Surgical Oncologist and Assistant Professor at Acharya Harihar Post Graduate
+                Institute of Cancer (AHPGIC), Cuttack. He consults at {siteConfig.hospital} in Mangalabag, Cuttack, and sees
+                patients from Cuttack, Bhubaneswar and districts across Odisha.
+              </p>
+              <p>
+                Whether you are looking for a breast cancer doctor, a thyroid surgeon, an oral cancer specialist or a second
+                opinion on a cancer treatment plan, a consultation with all your reports helps you understand the diagnosis
+                and your options.
+              </p>
+            </div>
+            <ul className="mt-8 border-t border-line">
+              {links.map((l) => (
+                <li key={l.href} className="border-b border-line">
+                  <Link href={l.href} className="group flex items-center justify-between py-4 font-medium text-ink-900 transition-colors hover:text-brand-600">
+                    {l.label}
+                    <ArrowRight className="h-4 w-4 text-ink-400 transition-all duration-300 group-hover:-rotate-45 group-hover:text-brand-600" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 className="label-mono mb-6 text-ink-500">Common questions</h2>
+            <div className="border-t border-line-strong">
+              {faqs.map((f, i) => (
+                <details key={f.question} className="group border-b border-line-strong" open={i === 0}>
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
+                    <h3 className="flex gap-4 font-display text-lg font-semibold tracking-[-0.025em] text-ink-900 md:text-xl">
+                      <span className="mt-1.5 font-mono text-[0.6875rem] font-normal tracking-normal text-ink-400">{String(i + 1).padStart(2, '0')}</span>
+                      {f.question}
+                    </h3>
+                    <span className="mt-1 text-2xl leading-none text-brand-600 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+                      +
+                    </span>
+                  </summary>
+                  <p className="pb-6 pl-9 leading-relaxed text-ink-600">{f.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </div>
       </div>

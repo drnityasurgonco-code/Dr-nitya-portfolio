@@ -18,14 +18,13 @@ export const doctorProfile: DoctorProfile = {
     'Trained in multidisciplinary tumour board approach for comprehensive cancer care',
     'Extensive experience in minimally invasive oncological surgeries',
     'Active contributor to cancer awareness and early detection programmes in Odisha',
-    'Recognized for compassionate patient-centered care in challenging oncology cases',
   ],
   certifications: [
     'Registered with Medical Council of India',
     'Member – Association of Surgeons of India (ASI)',
     'Member – Indian Association of Surgical Oncology (IASO)',
   ],
-  bio: `Dr. Nitya Nutan Misra is a distinguished Surgical Oncologist and Assistant Professor at the Acharya Harihar Post Graduate Institute of Cancer (AHPGIC), Cuttack — one of India's premier dedicated cancer treatment centers. With advanced training in surgical oncology, Dr. Misra has dedicated his career to offering precision-driven, evidence-based cancer surgery to patients across Odisha and beyond.
+  bio: `Dr. Nitya Nutan Misra is a distinguished Surgical Oncologist and Assistant Professor at the Acharya Harihar Post Graduate Institute of Cancer (AHPGIC), Cuttack — a dedicated government cancer institute in Odisha. With advanced training in surgical oncology, Dr. Misra has dedicated his career to offering precision-driven, evidence-based cancer surgery to patients across Odisha and beyond.
 
 His clinical expertise spans the entire spectrum of solid tumour surgeries: from breast cancer and complex head & neck procedures to gastrointestinal malignancies, thyroid & endocrine tumors, and sarcomas. He brings a multidisciplinary approach to every case — collaborating closely with medical oncologists, radiation oncologists, and pathologists to ensure each patient receives a comprehensive, individualized treatment plan.
 
@@ -34,9 +33,9 @@ Dr. Misra is deeply committed to the philosophy that early diagnosis saves lives
     'Surgical Oncologist & Assistant Professor at AHPGIC Cuttack. Specialized in breast, head & neck, GI, thyroid and sarcoma surgeries with a multidisciplinary, patient-centered approach.',
   stats: [
     { label: 'Years of Experience', value: '10+' },
-    { label: 'Surgeries Performed', value: '1000+' },
+    { label: 'Surgical Oncology', value: 'MCh' },
     { label: 'Cancer Specialities', value: '6' },
-    { label: 'Patient Success Rate', value: '95%+' },
+    { label: 'Assistant Professor', value: 'AHPGIC' },
   ],
 }
 

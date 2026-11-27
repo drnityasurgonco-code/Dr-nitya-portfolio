@@ -5,12 +5,14 @@ import { ServicesPreview } from '@/components/home/ServicesPreview'
 import { Testimonials } from '@/components/home/Testimonials'
 import { CTA } from '@/components/home/CTA'
 import { siteConfig } from '@/config/site'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+// Home title kept as-is: it is the page most likely to already rank for "best doctor in cuttack".
+export const metadata: Metadata = pageMetadata({
   title: siteConfig.title,
   description: siteConfig.description,
-  alternates: { canonical: siteConfig.url },
-}
+  path: '/',
+})
 
 export default function HomePage() {
   return (

@@ -1,7 +1,9 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MapPin, Phone, Calendar, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { siteConfig } from '@/config/site'
+import { services } from '@/features/services/services.data'
+import { breadcrumbSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/StructuredData'
 
 interface LocationPageProps {
   city: string
@@ -10,9 +12,10 @@ interface LocationPageProps {
   keywords: string[]
   faqs: { question: string; answer: string }[]
   mapUrl: string
+  path: string
 }
 
-export function LocationPageTemplate({ city, title, description, faqs, mapUrl }: LocationPageProps) {
+export function LocationPageTemplate({ city, title, description, faqs, mapUrl, path }: LocationPageProps) {
   // Schema for FAQ
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -29,10 +32,8 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl }:
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <JsonLd data={faqSchema} />
+      <JsonLd data={breadcrumbSchema([{ name: title, path }])} />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-primary-50 relative overflow-hidden">
@@ -70,10 +71,10 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl }:
               </h2>
               <div className="prose prose-lg text-neutral-600 max-w-none mb-12">
                 <p>
-                  Dr. Nitya Nutan Misra offers state-of-the-art oncology treatments in {city}. With specialized focus on breast cancer, head and neck tumors, gastrointestinal cancers, and thyroid disorders, patients receive multidisciplinary, personalized care tailored to their unique needs.
+                  Dr. Nitya Nutan Misra (MBBS, MS, MCh Surgical Oncology) is an Assistant Professor at Acharya Harihar Post Graduate Institute of Cancer and consults at {siteConfig.hospital}, Cuttack. He treats patients from {city} for breast cancer, head and neck tumours, gastrointestinal cancers, thyroid and endocrine tumours, and sarcoma.
                 </p>
                 <p>
-                  Recognized as a leading Surgical Oncologist in the region, Dr. Misra emphasizes early detection and evidence-based surgical interventions to ensure the best possible outcomes.
+                  Treatment plans follow evidence-based guidelines, and complex cases are reviewed by a multidisciplinary tumour board of surgical, medical and radiation oncologists. Dr. Misra places strong emphasis on early detection.
                 </p>
                 <ul className="list-none pl-0 space-y-3 mt-6">
                   {['Advanced Surgical Techniques', 'Compassionate Patient Care', 'Multidisciplinary Approach', 'Post-surgery Rehabilitation'].map((item, i) => (
@@ -135,11 +136,7 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl }:
               <div className="bg-neutral-900 rounded-2xl p-8 text-white">
                 <h3 className="font-display text-xl font-bold mb-6">Our Services</h3>
                 <ul className="space-y-4">
-                  {[
-                    { label: 'Breast Cancer Surgery', href: '/services#breast-cancer-surgery' },
-                    { label: 'Head & Neck Cancer', href: '/services#head-neck-cancer-surgery' },
-                    { label: 'GI Cancer Surgery', href: '/services#gastrointestinal-cancer-surgery' },
-                  ].map((link, i) => (
+                  {services.map((s) => ({ label: s.title, href: `/services/${s.slug}` })).map((link, i) => (
                     <li key={i}>
                       <Link href={link.href} className="flex items-center gap-2 text-neutral-300 hover:text-white transition-colors group">
                         <ArrowRight className="w-4 h-4 text-primary-400 group-hover:translate-x-1 transition-transform" />
@@ -165,7 +162,7 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl }:
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           className="absolute inset-0"
-          title={`Map showing location in ${city}`}
+          title={`Map: ${siteConfig.hospital}, Cuttack`}
         ></iframe>
       </section>
     </>

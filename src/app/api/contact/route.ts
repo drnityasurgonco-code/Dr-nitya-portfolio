@@ -23,7 +23,8 @@ export async function POST(request: Request) {
     //   html: `<p>Name: ${name}</p><p>Phone: ${phone}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
     // })
 
-    console.log('Contact form submission:', { name, phone, email, subject, message })
+    // Do not log submission fields: they contain patient names, phone numbers and health details.
+    void email
 
     return NextResponse.json(
       { success: true, message: 'Message received successfully.' },

@@ -1,18 +1,13 @@
 import type { Metadata } from 'next'
 import { ServicesPageContent } from './ServicesPageContent'
-import { siteConfig } from '@/config/site'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Cancer Surgery Services | Dr. Nitya Nutan Misra | Surgical Oncologist Odisha',
+export const metadata: Metadata = pageMetadata({
+  title: 'Cancer Surgery Services in Cuttack | Dr. Nitya Nutan Misra',
   description:
-    'Expert surgical oncology services: Breast Cancer Surgery, Head & Neck Cancer, GI Cancer, Thyroid & Endocrine Tumors, Sarcoma, and Multidisciplinary Cancer Treatment at AHPGIC, Cuttack.',
-  alternates: { canonical: `${siteConfig.url}/services` },
-  openGraph: {
-    title: 'Cancer Surgery Services | Dr. Nitya Nutan Misra',
-    description: 'Comprehensive surgical oncology care at AHPGIC, Cuttack, Odisha.',
-    url: `${siteConfig.url}/services`,
-  },
-}
+    'Breast, head & neck, GI, thyroid and sarcoma cancer surgery in Cuttack, Odisha, with tumour board review. Book a consultation with Dr. Nitya Nutan Misra.',
+  path: '/services',
+})
 
 export default function ServicesPage() {
   return <ServicesPageContent />

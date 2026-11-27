@@ -1,18 +1,13 @@
 import type { Metadata } from 'next'
 import { BlogsPageContent } from './BlogsPageContent'
-import { siteConfig } from '@/config/site'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Cancer Health Blog | Dr. Nitya Nutan Misra | Surgical Oncologist',
+export const metadata: Metadata = pageMetadata({
+  title: 'Cancer Health Blog | Dr. Nitya Nutan Misra',
   description:
-    'Read expert articles on breast cancer, thyroid cancer, head & neck cancer, GI cancer, and patient guides by Dr. Nitya Nutan Misra, Surgical Oncologist at AHPGIC Cuttack.',
-  alternates: { canonical: `${siteConfig.url}/blogs` },
-  openGraph: {
-    title: 'Cancer Health Blog | Dr. Nitya Nutan Misra',
-    description: 'Expert oncology articles and patient guides.',
-    url: `${siteConfig.url}/blogs`,
-  },
-}
+    'Plain-language articles on breast, thyroid, head & neck and GI cancer and preparing for surgery, by Surgical Oncologist Dr. Nitya Nutan Misra, Cuttack.',
+  path: '/blogs',
+})
 
 export default function BlogsPage() {
   return <BlogsPageContent />

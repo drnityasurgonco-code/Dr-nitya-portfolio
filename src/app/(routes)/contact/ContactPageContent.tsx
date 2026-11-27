@@ -8,6 +8,7 @@ import {
   AlertCircle, Loader2,
 } from 'lucide-react'
 import { siteConfig } from '@/config/site'
+import { trackEvent } from '@/components/seo/Analytics'
 
 interface FormData {
   name: string
@@ -81,6 +82,7 @@ ${form.message}`
     const encodedMessage = encodeURIComponent(whatsappMessage)
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
 
+    trackEvent('generate_lead', { method: 'whatsapp_form', form_subject: form.subject })
     window.open(whatsappUrl, '_blank')
 
     setStatus('success')
@@ -157,8 +159,8 @@ ${form.message}`
                   icon: MapPin,
                   label: 'Clinic Address',
                   value: siteConfig.hospital,
-                  sub: 'Kathagola Rd, near shreema Hospital, Mangalabag, Cuttack, Odisha 753001, Sai Shree Poly Clinic',
-                  href: 'https://maps.google.com/?q=Kathagola+Rd,+near+shreema+Hospital,+Mangalabag,+Cuttack,+Odisha+753001,+Sai+Shree+Poly+Clinic',
+                  sub: siteConfig.address,
+                  href: siteConfig.mapsUrl,
                   cta: 'Get Directions',
                   highlight: false,
                 },
@@ -218,11 +220,7 @@ ${form.message}`
                   <h3 className="font-display font-semibold text-neutral-900 text-base">OPD Hours</h3>
                 </div>
                 <div className="space-y-2 text-sm font-body">
-                  {[
-                    { day: 'Monday – Friday', time: '9:00 AM – 4:00 PM' },
-                    { day: 'Saturday', time: '9:00 AM – 1:00 PM' },
-                    { day: 'Sunday', time: 'Emergency Only' },
-                  ].map(({ day, time }) => (
+                  {siteConfig.hours.map(({ label: day, time }) => (
                     <div key={day} className="flex justify-between items-center gap-2 flex-wrap py-1.5 border-b border-neutral-100 last:border-0">
                       <span className="text-neutral-600">{day}</span>
                       <span className="text-neutral-800 font-medium">{time}</span>
@@ -413,8 +411,8 @@ ${form.message}`
           </h2>
           <div className="rounded-3xl overflow-hidden shadow-card border border-neutral-100 aspect-video w-full max-h-[450px]">
             <iframe
-              title="Clinic Location - Sai shree polyclinic, Cuttack, Odisha"
-              src="https://www.google.com/maps?q=Kathagola+Rd,+near+shreema+Hospital,+Mangalabag,+Cuttack,+Odisha+753001,+Sai+Shree+Poly+Clinic&output=embed"
+              title="Clinic Location - Sai Shree Polyclinic, Mangalabag, Cuttack, Odisha"
+              src={siteConfig.mapsEmbedUrl}
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -425,7 +423,7 @@ ${form.message}`
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
             <a
-              href="https://maps.google.com/?q=Kathagola+Rd,+near+shreema+Hospital,+Mangalabag,+Cuttack,+Odisha+753001,+Sai+Shree+Poly+Clinic"
+              href={siteConfig.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"

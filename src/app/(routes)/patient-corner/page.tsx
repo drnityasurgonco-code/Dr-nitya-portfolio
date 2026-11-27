@@ -1,18 +1,13 @@
 import type { Metadata } from 'next'
 import { PatientCornerContent } from './PatientCornerContent'
-import { siteConfig } from '@/config/site'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Patient Corner | FAQs & Resources | Dr. Nitya Nutan Misra',
+export const metadata: Metadata = pageMetadata({
+  title: 'Patient Corner: Cancer Surgery FAQs | Dr. Nitya Nutan Misra',
   description:
-    'Cancer patient resources, FAQs, and guides by Dr. Nitya Nutan Misra — Surgical Oncologist at AHPGIC Cuttack. Get answers to common questions about cancer surgery, diagnosis, and recovery.',
-  alternates: { canonical: `${siteConfig.url}/patient-corner` },
-  openGraph: {
-    title: 'Patient Corner | Dr. Nitya Nutan Misra',
-    description: 'Cancer patient resources and FAQs at AHPGIC, Cuttack.',
-    url: `${siteConfig.url}/patient-corner`,
-  },
-}
+    'Answers to common questions about cancer diagnosis, surgery and recovery, plus patient guides from Surgical Oncologist Dr. Nitya Nutan Misra, Cuttack.',
+  path: '/patient-corner',
+})
 
 export default function PatientCornerPage() {
   return <PatientCornerContent />

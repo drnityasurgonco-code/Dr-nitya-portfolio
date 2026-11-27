@@ -236,11 +236,6 @@ export function AboutPageContent() {
                 initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <div className="flex mb-3">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <Star key={j} className="w-3.5 h-3.5 fill-secondary text-secondary" />
-                  ))}
-                </div>
                 <p className="font-body text-white/75 text-sm leading-relaxed mb-4 italic">"{t.message}"</p>
                 <footer>
                   <p className="font-body font-semibold text-white text-sm">{t.name}</p>

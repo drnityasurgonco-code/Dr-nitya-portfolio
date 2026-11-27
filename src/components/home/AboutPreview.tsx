@@ -49,8 +49,8 @@ export function AboutPreview() {
 
               {/* Floating stat cards */}
               <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 shadow-lg transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-1 z-20">
-                <p className="font-display text-white text-xl font-bold leading-none drop-shadow-sm">1000+</p>
-                <p className="font-body text-white/90 text-xs mt-1 font-medium">Cancer Surgeries</p>
+                <p className="font-display text-white text-xl font-bold leading-none drop-shadow-sm">MCh</p>
+                <p className="font-body text-white/90 text-xs mt-1 font-medium">Surgical Oncology</p>
               </div>
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 shadow-lg transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-1 z-20">
                 <p className="font-display text-white text-xl font-bold leading-none drop-shadow-sm">10+</p>

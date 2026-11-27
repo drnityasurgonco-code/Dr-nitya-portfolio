@@ -10,6 +10,7 @@ import { siteConfig } from '@/config/site'
 interface Props {
   post: BlogPost
   related: BlogPost[]
+  service?: { title: string; slug: string }
 }
 
 function renderMarkdown(content: string) {
@@ -53,7 +54,7 @@ function renderMarkdown(content: string) {
   return elements
 }
 
-export function BlogContent({ post, related }: Props) {
+export function BlogContent({ post, related, service }: Props) {
   return (
     <div>
       {/* Hero */}
@@ -99,7 +100,7 @@ export function BlogContent({ post, related }: Props) {
         <div className="container-custom">
           <div className="grid lg:grid-cols-3 gap-10">
             {/* Main content */}
-            <article className="lg:col-span-2" itemScope itemType="https://schema.org/MedicalWebPage">
+            <article className="lg:col-span-2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -110,7 +111,7 @@ export function BlogContent({ post, related }: Props) {
                 </div>
 
                 {/* Article content */}
-                <div className="prose-medical" itemProp="articleBody">
+                <div className="prose-medical">
                   {renderMarkdown(post.content)}
                 </div>
 
@@ -137,6 +138,15 @@ export function BlogContent({ post, related }: Props) {
                     </p>
                   </div>
                 </div>
+
+                {service && (
+                  <div className="mt-8 p-5 rounded-2xl border border-primary-100 bg-primary-50">
+                    <p className="font-body text-sm text-neutral-700 mb-2">Treatment for this condition in Cuttack:</p>
+                    <Link href={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-primary-700 font-body font-semibold text-sm hover:gap-3 transition-all duration-200">
+                      {service.title} with Dr. Misra <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                )}
 
                 {/* Prev/next nav */}
                 <div className="mt-8 flex items-center gap-4">

@@ -12,12 +12,17 @@ const footerLinks = {
     { label: 'Contact', href: '/contact' },
   ],
   services: [
-    { label: 'Breast Cancer Surgery', href: '/services#breast-cancer-surgery' },
-    { label: 'Head & Neck Cancer', href: '/services#head-neck-cancer-surgery' },
-    { label: 'GI Cancer Surgery', href: '/services#gastrointestinal-cancer-surgery' },
-    { label: 'Thyroid & Endocrine', href: '/services#thyroid-endocrine-tumors' },
-    { label: 'Sarcoma Surgery', href: '/services#sarcoma-surgery' },
-    { label: 'Multidisciplinary Care', href: '/services#multidisciplinary-cancer-treatment' },
+    { label: 'Breast Cancer Surgery', href: '/services/breast-cancer-surgery' },
+    { label: 'Head & Neck Cancer', href: '/services/head-neck-cancer-surgery' },
+    { label: 'GI Cancer Surgery', href: '/services/gastrointestinal-cancer-surgery' },
+    { label: 'Thyroid & Endocrine', href: '/services/thyroid-endocrine-tumors' },
+    { label: 'Sarcoma Surgery', href: '/services/sarcoma-surgery' },
+    { label: 'Multidisciplinary Care', href: '/services/multidisciplinary-cancer-treatment' },
+  ],
+  locations: [
+    { label: 'Cancer Doctor in Cuttack', href: '/doctor-in-cuttack' },
+    { label: 'Serving Bhubaneswar', href: '/doctor-in-bhubaneswar' },
+    { label: 'Cancer Clinic in Odisha', href: '/clinic-in-odisha' },
   ],
 }
 
@@ -89,6 +94,22 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            <h3 className="font-display font-semibold text-white text-sm uppercase tracking-wider mt-6 mb-4">
+              Locations
+            </h3>
+            <ul className="space-y-2">
+              {footerLinks.locations.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-1.5 font-body text-sm text-neutral-400 hover:text-primary-400 transition-colors duration-200 group"
+                  >
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-200" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Contact */}
@@ -137,10 +158,15 @@ export function Footer() {
                     <MapPin className="w-4 h-4 text-primary-400" />
                   </div>
                   <div>
-                    <p className="font-body text-xs text-neutral-500">Hospital</p>
-                    <p className="font-body text-sm text-neutral-300 leading-snug">
-                      {siteConfig.hospital},<br />Cuttack, Odisha
-                    </p>
+                    <p className="font-body text-xs text-neutral-500">Clinic</p>
+                    <a
+                      href={siteConfig.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-body text-sm text-neutral-300 hover:text-primary-400 leading-snug transition-colors duration-200"
+                    >
+                      {siteConfig.address}
+                    </a>
                   </div>
                 </div>
               </li>

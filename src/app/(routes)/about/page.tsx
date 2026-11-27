@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { AboutPageContent } from './AboutPageContent'
 import { pageMetadata } from '@/lib/seo'
 import { AhpgicSection } from '@/components/seo/AhpgicSection'
+import { CTABand } from '@/components/shared/cta-band'
 
 export const metadata: Metadata = pageMetadata({
   title: 'About Dr. Nitya Nutan Misra | Surgical Oncologist, Cuttack',
@@ -15,6 +16,7 @@ export default function AboutPage() {
     <>
       <AboutPageContent />
       <AhpgicSection />
+      <CTABand />
     </>
   )
 }

@@ -1,13 +1,22 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import { blogPosts } from '@/features/blog/blog.data'
-import { siteConfig } from '@/config/site'
-import { formatDate } from '@/lib/utils'
+import { services } from '@/features/services/services.data'
+import { absoluteUrl, breadcrumbSchema, ids, pageMetadata } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/StructuredData'
 import { BlogContent } from './BlogContent'
 
 interface Props {
   params: { slug: string }
+}
+
+// Blog category -> the service page that treats it.
+const categoryToService: Record<string, string> = {
+  'Breast Cancer': 'breast-cancer-surgery',
+  'Thyroid Cancer': 'thyroid-endocrine-tumors',
+  'Head & Neck Cancer': 'head-neck-cancer-surgery',
+  'GI Cancer': 'gastrointestinal-cancer-surgery',
+  'Patient Guide': 'multidisciplinary-cancer-treatment',
 }
 
 export async function generateStaticParams() {
@@ -17,21 +26,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = blogPosts.find((p) => p.slug === params.slug)
   if (!post) return {}
-  return {
-    title: `${post.title} | Dr. Nitya Nutan Misra`,
+  return pageMetadata({
+    title: post.title,
     description: post.excerpt,
-    keywords: post.tags,
-    authors: [{ name: post.author }],
-    alternates: { canonical: `${siteConfig.url}/blogs/${post.slug}` },
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `${siteConfig.url}/blogs/${post.slug}`,
-      type: 'article',
-      publishedTime: post.date,
-      authors: [post.author],
-    },
-  }
+    path: `/blogs/${post.slug}`,
+    type: 'article',
+    publishedTime: post.date,
+  })
 }
 
 export default function BlogPostPage({ params }: Props) {
@@ -39,27 +40,31 @@ export default function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const related = blogPosts.filter((p) => p.id !== post.id && p.category === post.category).slice(0, 2)
+  const service = services.find((s) => s.slug === categoryToService[post.category])
+  const url = absoluteUrl(`/blogs/${post.slug}`)
 
   return (
     <>
-      {/* JSON-LD Article Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'MedicalWebPage',
-            headline: post.title,
-            description: post.excerpt,
-            author: { '@type': 'Person', name: post.author },
-            datePublished: post.date,
-            publisher: { '@type': 'Person', name: siteConfig.name },
-            mainEntityOfPage: `${siteConfig.url}/blogs/${post.slug}`,
-            keywords: post.tags.join(', '),
-          }),
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.title,
+          description: post.excerpt,
+          image: absoluteUrl('/opengraph-image'),
+          datePublished: post.date,
+          dateModified: post.date,
+          author: { '@id': ids.person },
+          publisher: { '@id': ids.physician },
+          mainEntityOfPage: url,
+          url,
+          inLanguage: 'en-IN',
+          keywords: post.tags.join(', '),
+          articleSection: post.category,
         }}
       />
-      <BlogContent post={post} related={related} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Blogs', path: '/blogs' }, { name: post.title, path: `/blogs/${post.slug}` }])} />
+      <BlogContent post={post} related={related} service={service ? { title: service.title, slug: service.slug } : undefined} />
     </>
   )
 }

@@ -1,18 +1,13 @@
 import type { Metadata } from 'next'
 import { ContactPageContent } from './ContactPageContent'
-import { siteConfig } from '@/config/site'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Contact Dr. Nitya Nutan Misra | Book Appointment | AHPGIC Cuttack',
+export const metadata: Metadata = pageMetadata({
+  title: 'Book Appointment | Dr. Nitya Nutan Misra, Cuttack',
   description:
-    'Contact Dr. Nitya Nutan Misra, Surgical Oncologist at AHPGIC Cuttack. Call +91 94388 44662 to book a consultation. Expert cancer surgery in Odisha.',
-  alternates: { canonical: `${siteConfig.url}/contact` },
-  openGraph: {
-    title: 'Contact Dr. Nitya Nutan Misra | Book Appointment',
-    description: 'Reach out for a cancer surgery consultation at AHPGIC, Cuttack, Odisha.',
-    url: `${siteConfig.url}/contact`,
-  },
-}
+    'Book a cancer surgery consultation with Dr. Nitya Nutan Misra at Sai Shree Polyclinic, Mangalabag, Cuttack. Call or WhatsApp +91 94388 44662.',
+  path: '/contact',
+})
 
 export default function ContactPage() {
   return <ContactPageContent />

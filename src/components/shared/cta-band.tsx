@@ -20,7 +20,7 @@ export function CTABand({
 }) {
   return (
     <section className="dark-scope frame relative overflow-hidden bg-ink-900 text-ink-300">
-      <div className="absolute inset-x-0 top-1/2 h-32 -translate-y-1/2 text-brand-500 opacity-60" aria-hidden="true">
+      <div className="absolute inset-x-0 bottom-4 h-20 text-brand-500 opacity-50" aria-hidden="true">
         <ECGLine />
       </div>
       <div className="container-x relative py-24 md:py-32">

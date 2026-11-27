@@ -1,13 +1,21 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight, CheckCircle2, MessageCircle, Phone } from 'lucide-react'
+import { ArrowRight, Check, Phone } from 'lucide-react'
 import { services } from '@/features/services/services.data'
 import { blogPosts } from '@/features/blog/blog.data'
 import { siteConfig } from '@/config/site'
 import { absoluteUrl, breadcrumbSchema, ids, pageMetadata } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/StructuredData'
 import { serviceSeo as seo } from '@/features/services/services.seo'
+import { getWhatsAppUrl } from '@/lib/whatsapp'
+import { PageHero } from '@/components/shared/page-hero'
+import { FaqAccordion } from '@/components/shared/faq-accordion'
+import { ClinicCard } from '@/components/shared/clinic-card'
+import { SectionIndex } from '@/components/shared/section-index'
+import { CTABand } from '@/components/shared/cta-band'
+import { WhatsAppIcon } from '@/components/shared/icons'
+import { FadeUp, Stagger } from '@/components/shared/reveal'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -27,6 +35,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata({ title: meta.title, description: meta.description, path: `/services/${service.slug}` })
 }
 
+const consultationSteps = [
+  `Call or WhatsApp ${siteConfig.phoneDisplay} to book an OPD slot at ${siteConfig.hospital}, Cuttack.`,
+  'Bring all reports, scans and biopsy slides or blocks you already have.',
+  'Dr. Misra examines you, explains the diagnosis and the surgical options.',
+  'Complex cases are discussed at a multidisciplinary tumour board before treatment is finalised.',
+]
+
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params
   const service = services.find((s) => s.slug === slug)
@@ -36,9 +51,9 @@ export default async function ServicePage({ params }: Props) {
   const path = `/services/${service.slug}`
   const articles = blogPosts.filter((p) => p.category === meta.blogCategory)
   const others = services.filter((s) => s.slug !== service.slug)
-  const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
-    `Hello Dr. Misra, I would like to book a consultation regarding ${service.title}.`,
-  )}`
+  const index = services.findIndex((s) => s.slug === service.slug) + 1
+  const waMessage = `Hello Dr. Misra, I would like to book a consultation regarding ${service.title}.`
+  const paragraphs = service.fullDesc.split(/\n\n/)
 
   return (
     <div>
@@ -69,101 +84,96 @@ export default async function ServicePage({ params }: Props) {
         }}
       />
 
-      {/* Hero */}
-      <section className="inner-page-hero pt-[calc(var(--navbar-height)+3rem)] pb-16">
-        <div className="container-custom relative z-10">
-          <nav className="flex items-center gap-2 text-white/50 text-sm font-body mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white/80 transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/services" className="hover:text-white/80 transition-colors">Services</Link>
-            <span>/</span>
-            <span className="text-white/80">{service.title}</span>
-          </nav>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-3xl mb-5">
-            {meta.h1}
-          </h1>
-          <p className="font-body text-white/70 text-base md:text-lg max-w-2xl mb-8 leading-relaxed">{service.shortDesc}</p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href={`tel:${siteConfig.phone}`}
-              className="inline-flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-300 text-[#052e2b] font-body font-bold px-7 py-3.5 rounded-xl text-sm transition-all duration-300"
-            >
-              <Phone className="w-4 h-4" /> Call {siteConfig.phoneDisplay}
+      <PageHero
+        crumbs={[{ name: 'Home', href: '/' }, { name: 'Specialities', href: '/services' }, { name: service.title }]}
+        label={`Speciality ${String(index).padStart(2, '0')} / ${String(services.length).padStart(2, '0')}`}
+        title={meta.h1}
+        lead={service.shortDesc}
+        actions={
+          <>
+            <a href={`tel:${siteConfig.phone}`} className="fx-phone btn-primary btn-lg">
+              <Phone size={16} /> Call {siteConfig.phoneDisplay}
             </a>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white/50 text-white font-body font-semibold px-7 py-3.5 rounded-xl text-sm transition-all duration-300"
-            >
-              <MessageCircle className="w-4 h-4" /> WhatsApp to Book
+            <a href={getWhatsAppUrl(waMessage)} target="_blank" rel="noopener noreferrer" className="btn-ghost-light btn-lg">
+              <WhatsAppIcon className="h-4 w-4 text-pulse" /> WhatsApp to book
             </a>
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      />
 
-      {/* Body */}
-      <section className="py-14 bg-white">
-        <div className="container-custom grid lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2">
-            <p className="font-body text-neutral-700 text-lg leading-relaxed mb-8">{meta.intro}</p>
+      <section className="frame bg-white">
+        <div className="container-x grid grid-cols-1 gap-14 py-16 md:py-24 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16">
+          <div className="min-w-0">
+            <FadeUp>
+              <p className="font-display text-xl font-medium leading-relaxed tracking-[-0.02em] text-ink-800 md:text-[1.375rem]">{meta.intro}</p>
+            </FadeUp>
 
-            <h2 className="font-display text-2xl font-bold text-neutral-900 mb-4">{meta.signsHeading}</h2>
-            <ul className="space-y-2 mb-10">
-              {meta.signs.map((sign) => (
-                <li key={sign} className="flex items-start gap-3 font-body text-neutral-700">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0" />
-                  {sign}
-                </li>
-              ))}
-            </ul>
-
-            <h2 className="font-display text-2xl font-bold text-neutral-900 mb-4">About {service.title}</h2>
-            {service.fullDesc.split('\n\n').map((para, i) => (
-              <p key={i} className="font-body text-neutral-600 leading-relaxed mb-4">{para}</p>
-            ))}
-
-            <h2 className="font-display text-2xl font-bold text-neutral-900 mt-10 mb-4">What Treatment Includes</h2>
-            <ul className="space-y-3">
-              {service.benefits.map((b) => (
-                <li key={b} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary-600 mt-0.5 shrink-0" />
-                  <span className="font-body text-neutral-700">{b}</span>
-                </li>
-              ))}
-            </ul>
-
-            <h2 className="font-display text-2xl font-bold text-neutral-900 mt-10 mb-4">How a Consultation Works</h2>
-            <ol className="list-decimal pl-5 space-y-2 font-body text-neutral-600">
-              <li>Call or WhatsApp {siteConfig.phoneDisplay} to book an OPD slot at {siteConfig.hospital}, Cuttack.</li>
-              <li>Bring all reports, scans and biopsy slides or blocks you already have.</li>
-              <li>Dr. Misra examines you, explains the diagnosis and the surgical options.</li>
-              <li>Complex cases are discussed at a multidisciplinary tumour board before treatment is finalised.</li>
-            </ol>
-
-            <h2 className="font-display text-2xl font-bold text-neutral-900 mt-10 mb-4">
-              Patients from Cuttack, Bhubaneswar and Across Odisha
-            </h2>
-            <p className="font-body text-neutral-600 leading-relaxed">{meta.localNote}</p>
-
-            <h2 className="font-display text-2xl font-bold text-neutral-900 mt-10 mb-4">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              {meta.faqs.map((f) => (
-                <div key={f.question} className="bg-neutral-50 rounded-2xl p-5 border border-neutral-100">
-                  <h3 className="font-display text-lg font-semibold text-neutral-900 mb-2">{f.question}</h3>
-                  <p className="font-body text-neutral-600 leading-relaxed">{f.answer}</p>
+            <SectionIndex index={1} label="Warning signs" className="mt-16 md:mt-20" />
+            <h2 className="display-md mt-6">{meta.signsHeading}</h2>
+            <Stagger className="mt-10 grid grid-cols-1 border-l border-t border-line sm:grid-cols-2">
+              {meta.signs.map((sign, i) => (
+                <div key={sign} className="group relative border-b border-r border-line p-6 transition-colors hover:bg-paper">
+                  <span className="absolute left-0 top-0 h-[2px] w-0 bg-brand-600 transition-all duration-500 group-hover:w-full" aria-hidden="true" />
+                  <span className="label-mono text-[0.6875rem] text-ink-400">{String(i + 1).padStart(2, '0')}</span>
+                  <p className="mt-4 leading-relaxed text-ink-800">{sign}</p>
                 </div>
+              ))}
+            </Stagger>
+
+            <SectionIndex index={2} label="The operation" className="mt-16 md:mt-20" />
+            <h2 className="display-md mt-6">About {service.title}</h2>
+            <div className="prose-clinic mt-8">
+              {paragraphs.map((para, i) => (
+                <p key={i}>{para}</p>
               ))}
             </div>
 
+            <h2 className="mt-14 font-display text-2xl font-semibold tracking-[-0.03em] text-ink-900">What Treatment Includes</h2>
+            <ul className="mt-6 border-t border-line">
+              {service.benefits.map((b) => (
+                <li key={b} className="flex items-start gap-4 border-b border-line py-4">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded bg-brand-50 text-brand-600">
+                    <Check size={14} aria-hidden="true" />
+                  </span>
+                  <span className="text-ink-700">{b}</span>
+                </li>
+              ))}
+            </ul>
+
+            <SectionIndex index={3} label="Your visit" className="mt-16 md:mt-20" />
+            <h2 className="display-md mt-6">How a Consultation Works</h2>
+            <ol className="mt-10 grid grid-cols-1 border-l border-t border-line sm:grid-cols-2">
+              {consultationSteps.map((step, i) => (
+                <li key={step} className="border-b border-r border-line p-6">
+                  <span className="font-display text-4xl font-semibold tracking-[-0.05em] text-brand-600">{String(i + 1).padStart(2, '0')}</span>
+                  <p className="mt-4 leading-relaxed text-ink-700">{step}</p>
+                </li>
+              ))}
+            </ol>
+
+            <h2 className="mt-14 font-display text-2xl font-semibold tracking-[-0.03em] text-ink-900">
+              Patients from Cuttack, Bhubaneswar and Across Odisha
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-ink-600">{meta.localNote}</p>
+
+            <SectionIndex index={4} label="Questions" className="mt-16 md:mt-20" />
+            <h2 className="display-md mb-8 mt-6">Frequently Asked Questions</h2>
+            <FaqAccordion faqs={meta.faqs} />
+
             {articles.length > 0 && (
               <>
-                <h2 className="font-display text-2xl font-bold text-neutral-900 mt-10 mb-4">Read More</h2>
-                <ul className="space-y-2">
+                <h2 className="mt-14 font-display text-2xl font-semibold tracking-[-0.03em] text-ink-900">Read More</h2>
+                <ul className="mt-6 border-t border-line">
                   {articles.map((a) => (
-                    <li key={a.slug}>
-                      <Link href={`/blogs/${a.slug}`} className="inline-flex items-center gap-2 text-primary-700 font-body font-medium hover:underline">
-                        <ArrowRight className="w-4 h-4" /> {a.title}
+                    <li key={a.slug} className="border-b border-line">
+                      <Link href={`/blogs/${a.slug}`} className="group flex items-center justify-between gap-6 py-5">
+                        <span>
+                          <span className="block label-mono text-[0.6875rem] text-brand-600">{a.category}</span>
+                          <span className="mt-1 block font-display text-lg font-semibold tracking-[-0.025em] text-ink-900 transition-colors group-hover:text-brand-600">
+                            {a.title}
+                          </span>
+                        </span>
+                        <ArrowRight size={18} className="shrink-0 text-ink-400 transition-all duration-300 group-hover:-rotate-45 group-hover:text-brand-600" />
                       </Link>
                     </li>
                   ))}
@@ -172,27 +182,16 @@ export default async function ServicePage({ params }: Props) {
             )}
           </div>
 
-          <aside className="space-y-6">
-            <div className="bg-primary-50 rounded-2xl p-6 border border-primary-100">
-              <h2 className="font-display text-lg font-bold text-neutral-900 mb-3">Clinic</h2>
-              <p className="font-body text-sm text-neutral-600 leading-relaxed mb-3">{siteConfig.address}</p>
-              <ul className="font-body text-sm text-neutral-700 space-y-1 mb-4">
-                {siteConfig.hours.map((h) => (
-                  <li key={h.label} className="flex justify-between gap-2">
-                    <span>{h.label}</span>
-                    <span className="font-medium">{h.time}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/contact" className="btn-primary w-full justify-center">Book Appointment</Link>
-            </div>
-            <div className="bg-neutral-900 rounded-2xl p-6 text-white">
-              <h2 className="font-display text-lg font-bold mb-4">Other Specialities</h2>
-              <ul className="space-y-3">
+          <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+            <ClinicCard whatsappMessage={waMessage} />
+            <div className="card p-6">
+              <h2 className="label-mono text-ink-500">Other Specialities</h2>
+              <ul className="mt-4">
                 {others.map((s) => (
-                  <li key={s.slug}>
-                    <Link href={`/services/${s.slug}`} className="flex items-center gap-2 text-neutral-300 hover:text-white transition-colors">
-                      <ArrowRight className="w-4 h-4 text-primary-400" /> {s.title}
+                  <li key={s.slug} className="border-t border-line first:border-t-0">
+                    <Link href={`/services/${s.slug}`} className="group flex items-center justify-between gap-3 py-3 font-medium text-ink-900 transition-colors hover:text-brand-600">
+                      {s.title}
+                      <ArrowRight size={15} className="shrink-0 text-ink-400 transition-all duration-300 group-hover:-rotate-45 group-hover:text-brand-600" />
                     </Link>
                   </li>
                 ))}
@@ -201,6 +200,8 @@ export default async function ServicePage({ params }: Props) {
           </aside>
         </div>
       </section>
+
+      <CTABand title="Early diagnosis saves lives." highlight={`Book a ${service.title.toLowerCase()} consultation.`} whatsappMessage={waMessage} />
     </div>
   )
 }

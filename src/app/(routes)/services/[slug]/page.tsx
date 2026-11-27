@@ -10,7 +10,7 @@ import { JsonLd } from '@/components/seo/StructuredData'
 import { serviceSeo as seo } from '@/features/services/services.seo'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export function generateStaticParams() {
@@ -19,16 +19,18 @@ export function generateStaticParams() {
 
 export const dynamicParams = false
 
-export function generateMetadata({ params }: Props): Metadata {
-  const service = services.find((s) => s.slug === params.slug)
-  const meta = seo[params.slug]
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const service = services.find((s) => s.slug === slug)
+  const meta = seo[slug]
   if (!service || !meta) return {}
   return pageMetadata({ title: meta.title, description: meta.description, path: `/services/${service.slug}` })
 }
 
-export default function ServicePage({ params }: Props) {
-  const service = services.find((s) => s.slug === params.slug)
-  const meta = seo[params.slug]
+export default async function ServicePage({ params }: Props) {
+  const { slug } = await params
+  const service = services.find((s) => s.slug === slug)
+  const meta = seo[slug]
   if (!service || !meta) notFound()
 
   const path = `/services/${service.slug}`

@@ -1,12 +1,19 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
+import { Inter_Tight, JetBrains_Mono, Instrument_Serif } from 'next/font/google'
 import './globals.css'
-import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
+import { SiteHeader } from '@/components/layout/site-header'
+import { SiteFooter } from '@/components/layout/site-footer'
+import { StickyMobileCTA } from '@/components/layout/sticky-mobile-cta'
 import { ScrollToTop } from '@/components/layout/ScrollToTop'
-import { FloatingCTA } from '@/components/layout/FloatingCTA'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { Analytics } from '@/components/seo/Analytics'
 import { SITE_URL, siteConfig } from '@/config/site'
+
+const interTight = Inter_Tight({ subsets: ['latin'], variable: '--font-inter-tight', display: 'swap' })
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-jetbrains', display: 'swap' })
+const instrument = Instrument_Serif({ subsets: ['latin'], weight: '400', style: ['normal', 'italic'], variable: '--font-instrument', display: 'swap' })
+
+export const viewport: Viewport = { themeColor: '#081a1b' }
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -42,21 +49,28 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className="scroll-smooth">
+    <html lang="en-IN" suppressHydrationWarning className={`${interTight.variable} ${jetbrains.variable} ${instrument.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="theme-color" content="#157f72" />
+        {/* Enables scroll-reveal styles only when JS runs; crawlers and no-JS visitors see all content */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <meta name="geo.region" content="IN-OR" />
         <meta name="geo.placename" content="Cuttack, Odisha, India" />
         <StructuredData />
       </head>
-      <body className="antialiased pb-16 md:pb-0">
+      <body className="flex min-h-screen flex-col pb-16 md:pb-0">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:rounded focus:bg-brand-600 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
+        >
+          Skip to content
+        </a>
         <ScrollToTop />
-        <Navbar />
-        <main className="page-wrapper">{children}</main>
-        <Footer />
-        <FloatingCTA />
+        <SiteHeader />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
+        <StickyMobileCTA />
         <Analytics />
       </body>
     </html>

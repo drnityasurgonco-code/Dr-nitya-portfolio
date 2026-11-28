@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
-import { Hero } from '@/components/home/Hero'
-import { AboutPreview } from '@/components/home/AboutPreview'
-import { ServicesPreview } from '@/components/home/ServicesPreview'
-import { Testimonials } from '@/components/home/Testimonials'
-import { CTA } from '@/components/home/CTA'
+import { HeroSection } from '@/components/home/hero-section'
+import { Manifesto } from '@/components/home/manifesto'
+import { SpecialtyRows } from '@/components/home/specialty-rows'
+import { AboutSplit } from '@/components/home/about-split'
 import { LocalSeoSection } from '@/components/home/LocalSeoSection'
+import { TestimonialRail } from '@/components/home/testimonial-rail'
+import { LatestArticles } from '@/components/home/latest-articles'
+import { SpecialtyMarquee } from '@/components/shared/specialty-marquee'
+import { CTABand } from '@/components/shared/cta-band'
 import { siteConfig } from '@/config/site'
 import { pageMetadata } from '@/lib/seo'
 
@@ -18,12 +21,15 @@ export const metadata: Metadata = pageMetadata({
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <AboutPreview />
-      <ServicesPreview />
+      <HeroSection />
+      <SpecialtyMarquee />
+      <Manifesto />
+      <SpecialtyRows />
+      <AboutSplit />
       <LocalSeoSection />
-      <Testimonials />
-      <CTA />
+      <TestimonialRail />
+      <LatestArticles />
+      <CTABand />
     </>
   )
 }

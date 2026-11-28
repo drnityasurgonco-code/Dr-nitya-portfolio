@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { LocationPageTemplate } from '@/components/seo/LocationPageTemplate'
-import { siteConfig } from '@/config/site'
 import { pageMetadata } from '@/lib/seo'
 import { locationSections } from '@/features/locations/locations.content'
 
@@ -37,7 +36,6 @@ export default function DoctorInBhubaneswarPage() {
       description="Dr. Nitya Nutan Misra, MCh Surgical Oncologist, sees patients from Bhubaneswar and nearby districts at Sai Shree Polyclinic in Cuttack, about 30 km from Bhubaneswar."
       keywords={[]}
       faqs={faqs}
-      mapUrl={siteConfig.mapsEmbedUrl}
       path="/doctor-in-bhubaneswar"
       sections={locationSections['/doctor-in-bhubaneswar']}
     />

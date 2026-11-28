@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/config/site'
 import { pageMetadata } from '@/lib/seo'
+import { PageHero } from '@/components/shared/page-hero'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Privacy Policy | Dr. Nitya Nutan Misra',
@@ -10,15 +11,16 @@ export const metadata: Metadata = pageMetadata({
 })
 
 export default function PrivacyPolicyPage() {
-  const h2 = 'font-display text-xl font-bold text-neutral-900 mt-8 mb-3'
-  const p = 'font-body text-neutral-600 leading-relaxed mb-3'
+  const h2 = 'mb-3 mt-12 font-display text-2xl font-semibold tracking-[-0.03em] text-ink-900'
+  const p = 'mb-4 text-[1.0625rem] leading-[1.8] text-ink-600'
   return (
-    <section className="pt-[calc(var(--navbar-height)+3rem)] pb-16 bg-white">
-      <div className="container-custom max-w-3xl">
-        <h1 className="font-display text-3xl md:text-4xl font-bold text-neutral-900 mb-6">Privacy Policy</h1>
+    <>
+    <PageHero crumbs={[{ name: 'Home', href: '/' }, { name: 'Privacy Policy' }]} label="Your information" title="Privacy Policy" />
+    <section className="frame bg-white py-16 md:py-20">
+      <div className="container-x max-w-3xl">
         <p className={p}>
           This page explains how this website handles your information. If you have any question, write to{' '}
-          <a className="text-primary-600 underline" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+          <a className="text-brand-700 underline underline-offset-2" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
         </p>
 
         <h2 className={h2}>Appointment requests</h2>
@@ -53,5 +55,6 @@ export default function PrivacyPolicyPage() {
         </p>
       </div>
     </section>
+    </>
   )
 }

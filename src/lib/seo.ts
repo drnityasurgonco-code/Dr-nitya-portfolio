@@ -79,6 +79,8 @@ export function siteSchema() {
         email: siteConfig.email,
         medicalSpecialty: 'Oncologic',
         address: { '@type': 'PostalAddress', ...addressParts },
+        geo: { '@type': 'GeoCoordinates', ...siteConfig.geo },
+        hasMap: siteConfig.mapsUrl,
         openingHoursSpecification: hours
           .filter((h) => h.days.length > 0)
           .map((h) => ({

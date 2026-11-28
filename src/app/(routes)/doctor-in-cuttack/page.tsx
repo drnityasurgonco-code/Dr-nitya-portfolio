@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { LocationPageTemplate } from '@/components/seo/LocationPageTemplate'
-import { siteConfig } from '@/config/site'
 import { pageMetadata } from '@/lib/seo'
 import { locationSections } from '@/features/locations/locations.content'
 
@@ -37,7 +36,6 @@ export default function DoctorInCuttackPage() {
       description="Dr. Nitya Nutan Misra is an MCh Surgical Oncologist and Assistant Professor at AHPGIC, Cuttack, offering surgery for breast, head & neck, GI and thyroid cancer and sarcoma."
       keywords={[]}
       faqs={faqs}
-      mapUrl={siteConfig.mapsEmbedUrl}
       path="/doctor-in-cuttack"
       sections={locationSections['/doctor-in-cuttack']}
     />

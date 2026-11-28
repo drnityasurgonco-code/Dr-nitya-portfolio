@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { LocationPageTemplate } from '@/components/seo/LocationPageTemplate'
-import { siteConfig } from '@/config/site'
 import { pageMetadata } from '@/lib/seo'
 import { locationSections } from '@/features/locations/locations.content'
 
@@ -37,7 +36,6 @@ export default function ClinicInOdishaPage() {
       description="Dr. Nitya Nutan Misra consults at Sai Shree Polyclinic in Cuttack for diagnosis, surgical opinion and follow-up of breast, head & neck, GI and thyroid cancers and sarcoma."
       keywords={[]}
       faqs={faqs}
-      mapUrl={siteConfig.mapsEmbedUrl}
       path="/clinic-in-odisha"
       sections={locationSections['/clinic-in-odisha']}
     />

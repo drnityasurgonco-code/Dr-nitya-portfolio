@@ -8,6 +8,7 @@ import { JsonLd } from '@/components/seo/StructuredData'
 import { PageHero } from '@/components/shared/page-hero'
 import { FaqAccordion } from '@/components/shared/faq-accordion'
 import { ClinicCard } from '@/components/shared/clinic-card'
+import { ClinicMap } from '@/components/shared/clinic-map'
 import { SectionIndex } from '@/components/shared/section-index'
 import { CTABand } from '@/components/shared/cta-band'
 import { WhatsAppIcon } from '@/components/shared/icons'
@@ -18,7 +19,6 @@ interface LocationPageProps {
   description: string
   keywords: string[]
   faqs: { question: string; answer: string }[]
-  mapUrl: string
   path: string
   /** Page-specific content so each location page is unique (not a doorway page). */
   sections?: { heading: string; paragraphs: string[]; links?: { label: string; href: string }[] }[]
@@ -26,7 +26,7 @@ interface LocationPageProps {
 
 const pillars = ['Advanced Surgical Techniques', 'Compassionate Patient Care', 'Multidisciplinary Approach', 'Post-surgery Rehabilitation']
 
-export function LocationPageTemplate({ city, title, description, faqs, mapUrl, path, sections = [] }: LocationPageProps) {
+export function LocationPageTemplate({ city, title, description, faqs, path, sections = [] }: LocationPageProps) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -161,7 +161,7 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl, p
                 </div>
               ))}
               <a
-                href={siteConfig.mapsUrl}
+                href={siteConfig.mapsDirectionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fx-fill group mt-auto flex items-center justify-between bg-ink-900 px-6 py-5 label-mono text-white [--fx-fill:var(--color-brand-600)]"
@@ -170,18 +170,10 @@ export function LocationPageTemplate({ city, title, description, faqs, mapUrl, p
                 <ArrowRight size={16} className="transition-transform group-hover:-rotate-45" />
               </a>
             </div>
-            <div className="min-h-[22rem] border-t border-line-strong lg:border-l lg:border-t-0">
-              <iframe
-                src={mapUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: '22rem' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={`Map: ${siteConfig.hospital}, Cuttack`}
-              />
-            </div>
+            <ClinicMap
+              title={`Map: ${siteConfig.hospital}, Cuttack`}
+              className="min-h-[22rem] border-t border-line-strong lg:border-l lg:border-t-0"
+            />
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { getWhatsAppUrl } from '@/lib/whatsapp'
 import { PageHero } from '@/components/shared/page-hero'
 import { SectionIndex } from '@/components/shared/section-index'
 import { OpenStatus } from '@/components/shared/open-status'
+import { ClinicMap } from '@/components/shared/clinic-map'
 import { WhatsAppIcon } from '@/components/shared/icons'
 import { AppointmentForm } from '@/components/contact/appointment-form'
 
@@ -94,20 +95,12 @@ export function ContactPageContent() {
           <h2 id="map-heading" className="display-md mt-6">
             Find Us at our <span className="text-brand-600">Clinic in Cuttack</span>
           </h2>
-          <div className="mt-10 aspect-video max-h-[480px] w-full overflow-hidden border border-line-strong">
-            <iframe
-              title="Clinic Location - Sai Shree Polyclinic, Mangalabag, Cuttack, Odisha"
-              src={siteConfig.mapsEmbedUrl}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+          <ClinicMap
+            title="Clinic Location - Sai Shree Polyclinic, Mangalabag, Cuttack, Odisha"
+            className="mt-10 h-[320px] w-full overflow-hidden border border-line-strong sm:h-[420px] lg:h-[480px]"
+          />
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={siteConfig.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-primary" aria-label="Get directions to the clinic on Google Maps">
+            <a href={siteConfig.mapsDirectionsUrl} target="_blank" rel="noopener noreferrer" className="btn-primary" aria-label="Get directions to the clinic on Google Maps">
               <MapPin size={15} /> Get Directions
             </a>
             <a href={`tel:${siteConfig.phone}`} className="fx-phone btn-secondary" aria-label="Call to confirm address">

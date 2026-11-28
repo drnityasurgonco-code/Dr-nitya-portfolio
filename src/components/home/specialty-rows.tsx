@@ -52,11 +52,20 @@ export function SpecialtyRows() {
                   className="group grid grid-cols-1 gap-4 py-8 md:grid-cols-[4rem_1.15fr_minmax(0,1fr)_2.5rem] md:items-start md:gap-6 md:py-10"
                 >
                   <span className="label-mono pt-2 text-ink-400">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="flex items-center gap-0 transition-[gap] duration-500 md:group-hover:gap-5">
-                    <span className="hidden h-14 w-0 shrink-0 items-center justify-center overflow-hidden rounded bg-brand-600 text-white transition-[width] duration-500 ease-out md:flex md:group-hover:w-14">
-                      <Icon size={24} strokeWidth={1.75} aria-hidden="true" />
+                  {/*
+                    The icon is absolutely positioned and the title moves with a transform, so the hover
+                    never changes layout: no re-wrapping, no row-height jump. The title's width is capped
+                    at the column minus the icon + gap (3.5rem + 1.25rem), so it wraps the same way at rest
+                    and on hover.
+                  */}
+                  <span className="relative flex items-center">
+                    <span
+                      className="absolute left-0 top-1/2 hidden h-14 w-0 -translate-y-1/2 items-center justify-center overflow-hidden rounded bg-brand-600 text-white transition-[width] duration-500 ease-out md:flex md:group-hover:w-14"
+                      aria-hidden="true"
+                    >
+                      <Icon size={24} strokeWidth={1.75} className="shrink-0" />
                     </span>
-                    <span className="font-display text-3xl font-semibold leading-none tracking-[-0.045em] text-ink-900 transition-colors group-hover:text-brand-600 md:text-[2.75rem]">
+                    <span className="block font-display text-3xl font-semibold leading-none tracking-[-0.045em] text-ink-900 [transition:color_150ms_cubic-bezier(0.4,0,0.2,1),translate_500ms_cubic-bezier(0,0,0.2,1)] group-hover:text-brand-600 md:max-w-[calc(100%-4.75rem)] md:text-[2.75rem] md:group-hover:translate-x-[4.75rem]">
                       {s.title}
                     </span>
                   </span>
